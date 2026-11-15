@@ -21,8 +21,8 @@ const Header = () => {
     <header className="header">
       <div className="header-top">
         {/* Menu hambúrguer para mobile */}
-        <button 
-          className="menu-toggle" 
+        <button
+          className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Abrir menu"
         >
@@ -65,7 +65,9 @@ const Header = () => {
       <nav className={`header-nav ${menuOpen ? "open" : ""}`}>
         <ul>
           <li>
-            <NavLink to="/" end>Home</NavLink>
+            <NavLink to="/" end>
+              Home
+            </NavLink>
           </li>
           <li>
             <NavLink to="/produtos">Produtos</NavLink>
