@@ -1,54 +1,111 @@
+
 import { useSearchParams } from 'react-router-dom';
+
 import Layout from '../Layout';
 import Section from '../../components/Section/Section';
 import ProductListing from '../../components/ProductListing/ProductListing';
-import FilterGroup from '../../components/FilterGroup/FilterGroup'
-import './ProductListingPage.css'; // Estilos de layout da página
+import FilterGroup from '../../components/FilterGroup/FilterGroup';
+
+import './ProductListingPage.css';
+
+// Importação das imagens da pasta src/assets
+import product1 from '../../assets/product-thumb-1.jpeg';
+import product2 from '../../assets/product-thumb-2.jpeg';
+import product3 from '../../assets/product-thumb-3.jpeg';
+import product4 from '../../assets/product-thumb-4.jpeg';
+import product5 from '../../assets/product-thumb-5.jpeg';
 
 const ProductListingPage = () => {
-  // Hook do React Router DOM para ler a query string (ex: /produtos?filter=nike)
+
+  // Leitura do parâmetro de pesquisa da URL
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get('filter') || '';
 
-  // Dados mockados de exemplo para os produtos da listagem
+  // Dados dos produtos
   const allProducts = [
-    { name: "K-Swiss V8 - Masculino", image: "/product-thumb-1.png", price: 200, priceDiscount: 100 },
-    { name: "K-Swiss V8 - Masculino", image: "/product-thumb-2.png", price: 200, priceDiscount: 100 },
-    { name: "K-Swiss V8 - Masculino", image: "/product-thumb-3.png", price: 200, priceDiscount: 100 },
-    { name: "K-Swiss V8 - Masculino", image: "/product-thumb-4.png", price: 200, priceDiscount: 100 },
-    { name: "K-Swiss V8 - Masculino", image: "/product-thumb-5.png", price: 300, priceDiscount: 100 },
-    { name: "K-Swiss V8 - Masculino", image: "/product-thumb-1.png", price: 200, priceDiscount: 100 },
+    {
+      name: "K-Swiss V8 - Masculino",
+      image: product1,
+      price: 200,
+      priceDiscount: 100
+    },
+    {
+      name: "K-Swiss V8 - Masculino",
+      image: product2,
+      price: 200,
+      priceDiscount: 100
+    },
+    {
+      name: "K-Swiss V8 - Masculino",
+      image: product3,
+      price: 200,
+      priceDiscount: 100
+    },
+    {
+      name: "K-Swiss V8 - Masculino",
+      image: product4,
+      price: 200,
+      priceDiscount: 100
+    },
+    {
+      name: "K-Swiss V8 - Masculino",
+      image: product5,
+      price: 300,
+      priceDiscount: 100
+    },
+    {
+      name: "K-Swiss V8 - Masculino",
+      image: product1,
+      price: 200,
+      priceDiscount: 100
+    }
   ];
 
-  // Filtragem básica com base na query string recebida do Header
-  const filteredProducts = searchTerm 
-    ? allProducts.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  // Filtragem dos produtos pela pesquisa
+  const filteredProducts = searchTerm
+    ? allProducts.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     : allProducts;
 
   return (
     <Layout>
+
       <div className="product-listing-page-container">
-        
-        {/* Coluna Esquerda: Ordenação e Filtros */}
+
+        {/* Coluna esquerda: Ordenação e filtros */}
         <aside className="filters-sidebar">
-          
-          {/* Caixa de Ordenação */}
+
+          {/* Ordenação */}
           <div className="sort-box">
-            <label htmlFor="sort-select">Ordenar por</label>
-            <select id="sort-select" className="sort-select">
-              <option value="lowest-price">Menor preço</option>
-              <option value="highest-price">Maior preço</option>
+            <label htmlFor="sort-select">
+              Ordenar por
+            </label>
+
+            <select
+              id="sort-select"
+              className="sort-select"
+            >
+              <option value="lowest-price">
+                Menor preço
+              </option>
+
+              <option value="highest-price">
+                Maior preço
+              </option>
             </select>
           </div>
 
-          {/* Caixa de Filtros */}
+          {/* Filtros */}
           <div className="filter-box">
+
             <h3>Filtrar por</h3>
+
             <hr className="filter-divider" />
 
-            <FilterGroup 
-              title="Marka" 
-              inputType="checkbox" 
+            <FilterGroup
+              title="Marca"
+              inputType="checkbox"
               options={[
                 { text: "Adidas", value: "adidas" },
                 { text: "Balenciaga", value: "balenciaga" },
@@ -58,9 +115,9 @@ const ProductListingPage = () => {
               ]}
             />
 
-            <FilterGroup 
-              title="Categoria" 
-              inputType="checkbox" 
+            <FilterGroup
+              title="Categoria"
+              inputType="checkbox"
               options={[
                 { text: "Esporte e Lazer", value: "esporte" },
                 { text: "Casual", value: "casual" },
@@ -69,29 +126,38 @@ const ProductListingPage = () => {
               ]}
             />
 
-            <FilterGroup 
-              title="Gênero" 
-              inputType="checkbox" 
+            <FilterGroup
+              title="Gênero"
+              inputType="checkbox"
               options={[
                 { text: "Masculino", value: "masculino" },
                 { text: "Feminino", value: "feminino" },
                 { text: "Unissex", value: "unissex" }
               ]}
             />
+
           </div>
+
         </aside>
 
-        {/* Coluna Direita: Listagem de Produtos */}
+        {/* Coluna direita: Listagem de produtos */}
         <main className="products-content">
-          <Section 
-            title={`Resultados para "${searchTerm || 'Todos'}" — ${filteredProducts.length} produtos`} 
+
+          <Section
+            title={`Resultados para "${searchTerm || 'Todos'}" — ${filteredProducts.length} produtos`}
             titleAlign="left"
           >
-            <ProductListing products={filteredProducts} />
+
+            <ProductListing
+              products={filteredProducts}
+            />
+
           </Section>
+
         </main>
 
       </div>
+
     </Layout>
   );
 };
