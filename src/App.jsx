@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import './App.css'
-import Logo from './components/Logo'
+import Header from './components/Header/Header'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+    <Header/>
       <section id="center">
         <div className="hero">
         </div>
         <div>
-          <Logo/>
           <h1>Get started</h1>
           <p>
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
