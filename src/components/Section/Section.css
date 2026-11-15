@@ -1,0 +1,47 @@
+.section-container {
+  width: 100%;
+  margin: 40px 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.section-header.left {
+  justify-content: space-between;
+}
+
+.section-header.center {
+  justify-content: center;
+  position: relative;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--dark-gray-2);
+  margin: 0;
+}
+
+.section-link {
+  font-size: 18px;
+  color: var(--primary);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.section-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.section-header.center .section-link {
+  position: absolute;
+  right: 0;
+}
+
+.section-content {
+  width: 100%;
+}
