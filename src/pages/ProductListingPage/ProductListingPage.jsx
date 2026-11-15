@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import Layout from '../Layout';
@@ -32,18 +33,14 @@ const ProductListingPage = () => {
             <label htmlFor="sort-select">
               Ordenar por
             </label>
-
             <select
               id="sort-select"
               className="sort-select"
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
             >
-              <option value="lowest-price">
-                Menor preço
-              </option>
-
-              <option value="highest-price">
-                Maior preço
-              </option>
+              <option value="lowest-price">Menor preço</option>
+              <option value="highest-price">Maior preço</option>
             </select>
           </div>
 
@@ -52,28 +49,32 @@ const ProductListingPage = () => {
             <h3>Filtrar por</h3>
             <hr className="filter-divider" />
 
-            <FilterGroup
-              title="Marca"
-              inputType="checkbox"
-              options={[
-                { text: "Adidas", value: "adidas" },
-                { text: "Balenciaga", value: "balenciaga" },
-                { text: "K-Swiss", value: "k-swiss" },
-                { text: "Nike", value: "nike" },
-                { text: "Puma", value: "puma" }
-              ]}
-            />
+            <div onChange={(e) => handleFilterChange('brand', e.target.value)}>
+              <FilterGroup
+                title="Marca"
+                inputType="checkbox"
+                options={[
+                  { text: "Adidas", value: "adidas" },
+                  { text: "Balenciaga", value: "balenciaga" },
+                  { text: "K-Swiss", value: "k-swiss" },
+                  { text: "Nike", value: "nike" },
+                  { text: "Puma", value: "puma" }
+                ]}
+              />
+            </div>
 
-            <FilterGroup
-              title="Categoria"
-              inputType="checkbox"
-              options={[
-                { text: "Esporte e Lazer", value: "esporte" },
-                { text: "Casual", value: "casual" },
-                { text: "Utilitário", value: "utilitario" },
-                { text: "Corrida", value: "corrida" }
-              ]}
-            />
+            <div onChange={(e) => handleFilterChange('category', e.target.value)}>
+              <FilterGroup
+                title="Categoria"
+                inputType="checkbox"
+                options={[
+                  { text: "Esporte e Lazer", value: "esporte" },
+                  { text: "Casual", value: "casual" },
+                  { text: "Utilitário", value: "utilitario" },
+                  { text: "Corrida", value: "corrida" }
+                ]}
+              />
+            </div>
 
             <FilterGroup
               title="Gênero"
@@ -91,7 +92,7 @@ const ProductListingPage = () => {
         
         <main className="products-content">
           <Section
-            title={`Resultados para "${searchTerm || 'Todos'}" — ${filteredProducts.length} produtos`}
+            title={`Resultados ${searchTerm ? `para "${searchTerm}"` : ""} — ${resultProducts.length} produtos`}
             titleAlign="left"
           >
             <ProductListing

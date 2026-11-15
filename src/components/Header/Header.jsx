@@ -47,10 +47,10 @@ const Header = () => {
         </form>
 
         <div className="user-actions">
-          <Link to="/cadastro" className="register-link">
+          <Link to="#" className="register-link">
             Cadastre-se
           </Link>
-          <Link to="/login" className="login-button">
+          <Link to="#" className="login-button">
             Entrar
           </Link>
         </div>
