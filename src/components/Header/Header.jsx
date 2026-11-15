@@ -20,7 +20,6 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-top">
-        {/* Menu hambúrguer para mobile */}
         <button
           className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}

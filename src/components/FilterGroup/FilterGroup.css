@@ -1,0 +1,45 @@
+.filter-group {
+  background-color: var(--white);
+  width: 100%;
+  max-width: 308px; /* Largura padrão definida no layout da listagem */
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.filter-group-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filter-option-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--dark-gray-2);
+}
+
+/* Requisito: Inputs com dimensões de 22x22px e cor primária */
+.filter-input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--primary); /* Aplica a cor primária #C92071 nativamente nos inputs modernos */
+  cursor: pointer;
+  border: 1px solid var(--light-gray-2);
+  border-radius: 2px;
+}
+
+.filter-text {
+  user-select: none;
+}

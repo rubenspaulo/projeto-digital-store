@@ -4,7 +4,6 @@ import facebook from "../../assets/icons/facebook.svg";
 import instagram from "../../assets/icons/instagram.svg";
 import twitter from "../../assets/icons/twitter.svg";
 
-// Componente auxiliar reutilizável para as colunas de links
 const InformationSection = ({ title, informations }) => {
   return (
     <div className="info-column">
