@@ -1,5 +1,5 @@
-import { useState } from "react";
 import "./Gallery.css";
+import { useState } from "react";
 import arrowLeft from "../../assets/icons/arrow-left.svg";
 import arrowRight from "../../assets/icons/arrow-right.svg";
 
