@@ -6,11 +6,11 @@ import ProductListing from "../../components/ProductListing/ProductListing";
 import "./ProductViewPage.css";
 
 // Importando imagens de exemplo dos assets
-import shoeThumb1 from "../assets/product-thumb-1.jpeg";
-import shoeThumb2 from "../assets/product-thumb-2.jpeg";
-import shoeThumb3 from "../assets/product-thumb-3.jpeg";
-import shoeThumb4 from "../assets/product-thumb-4.jpeg";
-import shoeThumb5 from "../assets/product-thumb-5.jpeg";
+import shoeThumb1 from "../../assets/product-thumb-1.jpeg";
+import shoeThumb2 from "../../assets/product-thumb-2.jpeg";
+import shoeThumb3 from "../../assets/product-thumb-3.jpeg";
+import shoeThumb4 from "../../assets/product-thumb-4.jpeg";
+import shoeThumb5 from "../../assets/product-thumb-5.jpeg";
 
 const ProductViewPage = () => {
   // Imagens para a galeria de visualização do produto

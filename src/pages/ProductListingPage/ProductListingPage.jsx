@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
 import Layout from '../Layout';
-import Section from '../components/Section';
-import ProductListing from '../components/ProductListing';
-import FilterGroup from '../components/FilterGroup';
+import Section from '../../components/Section/Section';
+import ProductListing from '../../components/ProductListing/ProductListing';
+import FilterGroup from '../../components/FilterGroup/FilterGroup'
 import './ProductListingPage.css'; // Estilos de layout da página
 
 const ProductListingPage = () => {
