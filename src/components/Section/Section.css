@@ -1,12 +1,14 @@
 .section-container {
   width: 100%;
   margin: 40px 0;
+  padding: 0 20px;
 }
 
 .section-header {
   display: flex;
   align-items: center;
   margin-bottom: 24px;
+  width: 100%;
 }
 
 .section-header.left {
@@ -14,7 +16,9 @@
 }
 
 .section-header.center {
+  display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
 }
 
@@ -23,6 +27,7 @@
   font-weight: bold;
   color: var(--dark-gray-2);
   margin: 0;
+  text-align: center;
 }
 
 .section-link {
@@ -39,7 +44,7 @@
 
 .section-header.center .section-link {
   position: absolute;
-  right: 0;
+  right: 20px;
 }
 
 .section-content {

@@ -3,4 +3,6 @@
   grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
   gap: 24px;
   width: 100%;
+  padding-inline: 2rem;
+  justify-items: center;
 }

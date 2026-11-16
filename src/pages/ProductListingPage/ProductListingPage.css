@@ -66,7 +66,6 @@
   flex: 1;
 }
 
-/* Responsividade básica para telemóveis */
 @media (max-width: 768px) {
   .product-listing-page-container {
     flex-direction: column;

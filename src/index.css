@@ -15,7 +15,6 @@
   --white: #FFFFFF;
 }
 
-/* Reset básico e normalização */
 * {
   margin: 0;
   padding: 0;
@@ -26,7 +25,6 @@ body {
   font-family: 'Inter', sans-serif, system-ui;
   background-color: var(--light-gray-3);
   color: var(--dark-gray);
-  -webkit-font-smoothing: antialiased;
 }
 
 ul {
