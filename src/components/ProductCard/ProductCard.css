@@ -76,3 +76,9 @@
   font-weight: bold;
   color: var(--dark-gray);
 }
+
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
