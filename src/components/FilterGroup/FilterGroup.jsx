@@ -1,27 +1,27 @@
-import './FilterGroup.css'; // Opcional para os estilos específicos
+import './FilterGroup.css';
 
-const FilterGroup = ({ title, inputType = 'checkbox', options = [] }) => {
+const FilterGroup = ({ title, inputType = 'checkbox', options = [], onChange }) => {
   return (
     <div className="filter-group">
-      <h3 className="filter-group-title">{title}</h3>
-      
-      <div className="filter-options-list">
+      <h4 className="filter-group-title">{title}</h4>
+      <ul className="filter-options-list">
         {options.map((option, index) => {
-          const optionValue = option.value || option.text;
-          
+          const value = option.value || option.text;
           return (
-            <label key={index} className="filter-option-label">
-              <input 
-                type={inputType} 
-                name={title.toLowerCase().replace(/\s+/g, '-')} 
-                value={optionValue} 
-                className="filter-input"
-              />
-              <span className="filter-text">{option.text}</span>
-            </label>
+            <li key={index}>
+              <label className="filter-option-item">
+                <input
+                  type={inputType}
+                  name={title.toLowerCase()}
+                  value={value}
+                  onChange={onChange}
+                />
+                <span>{option.text}</span>
+              </label>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };

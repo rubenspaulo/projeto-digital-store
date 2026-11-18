@@ -1,45 +1,83 @@
+/* =========================================
+   ESTILOS DO GRUPO DE FILTROS (FilterGroup)
+========================================= */
+
 .filter-group {
-  background-color: var(--white);
-  width: 100%;
-  max-width: 308px; /* Largura padrão definida no layout da listagem */
-  padding: 20px;
-  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .filter-group-title {
   font-size: 14px;
   font-weight: 700;
   color: var(--dark-gray-2);
-  margin-bottom: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  margin: 0;
 }
 
 .filter-options-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.filter-option-label {
+.filter-option-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   cursor: pointer;
   font-size: 14px;
   color: var(--dark-gray-2);
 }
 
-/* Requisito: Inputs com dimensões de 22x22px e cor primária */
-.filter-input {
+/* Estilização personalizada dos inputs (checkbox e radio) */
+.filter-option-item input[type="checkbox"],
+.filter-option-item input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
   width: 22px;
   height: 22px;
-  accent-color: var(--primary); /* Aplica a cor primária #C92071 nativamente nos inputs modernos */
-  cursor: pointer;
   border: 1px solid var(--light-gray-2);
-  border-radius: 2px;
+  border-radius: 4px; /* Arredondado para checkbox; se for radio, pode virar 50% via props ou classe específica */
+  outline: none;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  background-color: var(--white);
+  transition: background-color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
 }
 
-.filter-text {
-  user-select: none;
+.filter-option-item input[type="radio"] {
+  border-radius: 50%;
+}
+
+/* Estado marcado (checked) */
+.filter-option-item input[type="checkbox"]:checked,
+.filter-option-item input[type="radio"]:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Ícone de marcação interno do checkbox */
+.filter-option-item input[type="checkbox"]:checked::before {
+  content: "";
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid var(--white);
+  border-bottom: 2px solid var(--white);
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+/* Ponto interno do radio */
+.filter-option-item input[type="radio"]:checked::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--white);
+  border-radius: 50%;
 }

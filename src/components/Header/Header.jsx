@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import Logo from "../Logo/Logo";
@@ -12,6 +11,27 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [menuOpen]);
 
   const navigate = useNavigate();
 
@@ -29,12 +49,13 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-top">
-
-        {/* Menu hambúrguer */}
         <button
           type="button"
           className="menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => {
+            setMenuOpen(!menuOpen);
+            setSearchOpen(false);
+          }}
           aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={menuOpen}
         >
@@ -43,16 +64,17 @@ const Header = () => {
           <span></span>
         </button>
 
-        {/* Logo */}
         <div className="header-logo">
           <Logo variant="header" />
         </div>
 
-        {/* Botão de busca mobile */}
         <button
           type="button"
           className="mobile-search-toggle"
-          onClick={() => setSearchOpen(!searchOpen)}
+          onClick={() => {
+            setSearchOpen(!searchOpen);
+            setMenuOpen(false);
+          }}
           aria-label={searchOpen ? "Fechar busca" : "Abrir busca"}
           aria-expanded={searchOpen}
           aria-controls="header-search"
@@ -60,7 +82,6 @@ const Header = () => {
           <img src={searchIcon} alt="" />
         </button>
 
-        {/* Barra de pesquisa */}
         <form
           id="header-search"
           className={`search-container ${searchOpen ? "open" : ""}`}
@@ -82,7 +103,6 @@ const Header = () => {
           </button>
         </form>
 
-        {/* Ações do usuário - desktop */}
         <div className="user-actions">
           <Link to="#" className="register-link">
             Cadastre-se
@@ -93,55 +113,85 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Carrinho */}
         <div className="cart-container">
           <img src={cartIcon} alt="Carrinho de compras" />
           <span className="cart-badge">2</span>
         </div>
-
       </div>
 
-      {/* Navegação principal */}
-      <nav className={`header-nav ${menuOpen ? "open" : ""}`}>
-        <ul>
-          <li>
-            <NavLink
-              to="/"
-              end
-              onClick={() => setMenuOpen(false)}
-            >
-              Home
-            </NavLink>
-          </li>
 
-          <li>
-            <NavLink
-              to="/produtos"
-              onClick={() => setMenuOpen(false)}
-            >
-              Produtos
-            </NavLink>
-          </li>
+{menuOpen && (
+  <div
+    className="menu-overlay"
+    onClick={() => setMenuOpen(false)}
+    aria-hidden="true"
+  />
+)}
 
-          <li>
-            <a
-              href="#categorias"
-              onClick={() => setMenuOpen(false)}
-            >
-              Categorias
-            </a>
-          </li>
+<nav
+  id="mobile-navigation"
+  className={`header-nav ${menuOpen ? "open" : ""}`}
+  aria-hidden={!menuOpen}
+>
+  <ul>
+    <li>
+      <NavLink
+        to="/"
+        end
+        onClick={() => setMenuOpen(false)}
+      >
+        Home
+      </NavLink>
+    </li>
 
-          <li>
-            <a
-              href="#pedidos"
-              onClick={() => setMenuOpen(false)}
-            >
-              Meus Pedidos
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <li>
+      <NavLink
+        to="/produtos"
+        onClick={() => setMenuOpen(false)}
+      >
+        Produtos
+      </NavLink>
+    </li>
+
+    <li>
+      <a
+        href="#categorias"
+        onClick={() => setMenuOpen(false)}
+      >
+        Categorias
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="#pedidos"
+        onClick={() => setMenuOpen(false)}
+      >
+        Meus Pedidos
+      </a>
+    </li>
+  </ul>
+
+  {/* Ações do usuário */}
+  <div className="mobile-user-actions">
+    <Link
+      to="#"
+      className="login-button"
+      onClick={() => setMenuOpen(false)}
+    >
+      Entrar
+    </Link>
+
+    <Link
+      to="#"
+      className="register-link"
+      onClick={() => setMenuOpen(false)}
+    >
+      Cadastre-se
+    </Link>
+  </div>
+</nav>
+
     </header>
   );
 };
