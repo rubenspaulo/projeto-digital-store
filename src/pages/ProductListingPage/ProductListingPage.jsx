@@ -27,7 +27,7 @@ const ProductListingPage = () => {
     setSelectedFilters(prev => {
       const currentList = prev[categoryType] || [];
       const exists = currentList.includes(value);
-      
+
       const updatedList = exists
         ? currentList.filter(item => item !== value)
         : [...currentList, value];
@@ -43,22 +43,22 @@ const ProductListingPage = () => {
     : [...productsData];
 
   if (selectedFilters.brand.length > 0) {
-    resultProducts = resultProducts.filter(p => 
+    resultProducts = resultProducts.filter(p =>
       selectedFilters.brand.some(b => p.brand.toLowerCase() === b.toLowerCase())
     );
   }
   if (selectedFilters.category.length > 0) {
-    resultProducts = resultProducts.filter(p => 
+    resultProducts = resultProducts.filter(p =>
       selectedFilters.category.some(c => p.category.toLowerCase().includes(c.toLowerCase()))
     );
   }
   if (selectedFilters.gender.length > 0) {
-    resultProducts = resultProducts.filter(p => 
+    resultProducts = resultProducts.filter(p =>
       selectedFilters.gender.some(g => p.gender.toLowerCase() === g.toLowerCase())
     );
   }
   if (selectedFilters.condition && selectedFilters.condition.length > 0) {
-    resultProducts = resultProducts.filter(p => 
+    resultProducts = resultProducts.filter(p =>
       selectedFilters.condition.some(c => p.condition?.toLowerCase() === c.toLowerCase())
     );
   }
@@ -80,19 +80,20 @@ const ProductListingPage = () => {
 
         {/* Overlay para fechar os filtros no mobile */}
         {filtersOpen && (
-          <div 
-            className="filters-overlay" 
-            onClick={() => setFiltersOpen(false)} 
+          <div
+            className="filters-overlay"
+            onClick={() => setFiltersOpen(false)}
           />
         )}
 
-        {/* Barra lateral de filtros (Fica à esquerda no desktop e vira gaveta no mobile) */}
+        {/* Barra lateral de filtros (Esquerda no desktop / Gaveta lateral no mobile) */}
         <aside className={`filters-sidebar ${filtersOpen ? 'open' : ''}`}>
           <div className="filters-header-mobile">
             <h3>Filtrar por</h3>
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="filters-close-btn"
+              aria-label="Fechar filtros"
               onClick={() => setFiltersOpen(false)}
             >
               ✕
@@ -152,23 +153,8 @@ const ProductListingPage = () => {
         </aside>
 
         <main className="products-content">
-          
-          {/* Topo da listagem: No desktop exibe o Ordenar por à direita. No mobile exibe ordenação e botão de filtros lado a lado. */}
+          {/* Topo da listagem: Desktop (Ordenar à direita) | Mobile (Ordenar à esquerda + botão rosa à direita) */}
           <div className="listing-top-bar">
-            <div className="mobile-actions-row">
-              <button 
-                type="button" 
-                className="mobile-filter-toggle"
-                onClick={() => setFiltersOpen(true)}
-              >
-                
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="24" height="24" rx="4" fill="#C92071"/>
-                  <path d="M7 8H17M9 12H15M11 16H13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </button>
-            </div>
-
             <div className="sort-box">
               <label htmlFor="sort-select">
                 Ordenar por:
@@ -182,6 +168,19 @@ const ProductListingPage = () => {
                 <option value="lowest-price">menor preço</option>
                 <option value="highest-price">maior preço</option>
               </select>
+            </div>
+
+            <div className="mobile-actions-row">
+              <button
+                type="button"
+                className="mobile-filter-toggle"
+                aria-label="Abrir filtros"
+                onClick={() => setFiltersOpen(true)}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 6H20M7 12H17M10 18H14" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </button>
             </div>
           </div>
 
